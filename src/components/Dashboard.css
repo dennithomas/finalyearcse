@@ -1,0 +1,447 @@
+/* General Layout */
+.dashboard-container {
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Header Section */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #dee2e6;
+  flex-wrap: nowrap;
+  gap: 1rem;
+}
+
+/* Profile Container */
+.profile-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 140px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.profile-icon {
+  font-size: 1.3rem;
+  color: #343a40;
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 14px;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  border: 1px solid #ced4da;
+  border-radius: 25px;
+  padding: 0.4rem 1rem;
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-icon {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-right: 0.5rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  flex: 1;
+  font-size: 14px;
+  color: #212529;
+}
+
+/* Hamburger Button */
+.hamburger-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: #343a40;
+  cursor: pointer;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+  }
+
+  .profile-container {
+    order: 1;
+    font-size: 13px;
+  }
+
+  .user-name {
+    font-size: 12px;
+    max-width: 60px;
+  }
+
+  .search-bar {
+    order: 2;
+    margin: 0;
+    width: 100%;
+  }
+
+  .hamburger-btn {
+    order: 3;
+    font-size: 1.2rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* Stats Card */
+.lesson-card {
+  background: #ffffff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.stats-card {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.stat-icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.fire {
+  color: #ff5722;
+}
+
+.xp {
+  color: #28a745;
+}
+
+/* Performance Summary */
+.performance-card-toggle {
+  cursor: pointer;
+  background-color: #fff3cd;
+  padding: 0.75rem 1rem;
+  border-radius: 0.4rem;
+  text-align: center;
+}
+
+.performance-content {
+  padding-left: 1rem;
+  font-size: 1rem;
+}
+
+/* Bottom Navigation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: #ffffff;
+  width: 100%;
+  padding: 10px 0;
+  border-top: 1px solid #dee2e6;
+  display: flex;
+  justify-content: space-around;
+  z-index: 1000;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  color: #6c757d;
+  transition: transform 0.2s ease;
+}
+
+.nav-icon:hover {
+  transform: scale(1.1);
+  color: #007bff;
+}
+
+/* Sidebar (Offcanvas) */
+.offcanvas .btn {
+  font-size: 1rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  color: #212529;
+  background: none;
+  border: none;
+}
+
+.offcanvas .btn svg {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
+
+/* Make input smoother on focus */
+.search-bar input:focus {
+  outline: none;
+  box-shadow: none;
+}
+.hamburger-btn {
+  margin-left: auto;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  color: #343a40;
+  cursor: pointer;
+}
+.dashboard-header {
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+
+.profile-container {
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 120px;
+}
+
+.user-name {
+  font-weight: 500;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.search-bar {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 6px 12px;
+  max-width: 500px;
+}
+
+.search-bar input::placeholder {
+  font-size: 14px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .user-name {
+    max-width: 60px;
+    font-size: 12px;
+  }
+
+  .search-bar {
+    padding: 5px 10px;
+  }
+
+  .search-bar input {
+    font-size: 13px;
+  }
+}
+/* Dashboard.css */
+
+/* Fade-in animation */
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-container {
+  animation: fadeInSlide 0.6s ease-in-out;
+}
+
+/* Card hover */
+.lesson-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: 12px;
+  background: #f8f9fa;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.lesson-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Bottom nav icon animation */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.8rem 0;
+  border-top: 1px solid #ddd;
+  z-index: 1000;
+}
+
+.nav-icon {
+  font-size: 1.6rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #444;
+}
+
+.nav-icon:hover {
+  transform: scale(1.2);
+  color: #007bff;
+}
+
+/* Profile fade in */
+.profile-container {
+  animation: fadeInSlide 0.6s ease-in-out;
+}
+
+/* Toggle section for performance */
+.performance-content {
+  animation: fadeInSlide 0.4s ease-in-out;
+  background: #ffffff;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+}
+
+/* Performance toggle card */
+.performance-card-toggle {
+  transition: background 0.3s ease;
+}
+
+.performance-card-toggle:hover {
+  background-color: #e8f0fe;
+}
+.performance-content {
+  overflow: hidden;
+}
+/* Centering the Popup */
+
+/* Notification Popup at the Top Center */
+.welcome-popup {
+  position: fixed;
+  top: 20px; /* Distance from the top of the screen */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the popup horizontally */
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Light shadow for visibility */
+  z-index: 9999;
+  max-width: 90%; /* Responsive width */
+  width: 350px; /* Set a max width for the notification */
+  text-align: center;
+  font-size: 16px;
+  color: #333;
+  animation: fadeInOut 5s ease-out forwards;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #999;
+}
+
+/* Backdrop (Optional) */
+.popup-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent dark background */
+  z-index: 998; /* Behind the popup */
+  pointer-events: auto;
+}
+
+/* Fade-In and Fade-Out Animation */
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+}
+
+/* Add blur effect on background when notification is active */
+body.popup-active {
+  overflow: hidden;
+  filter: blur(3px);
+}
+.lottie-hello {
+  width: 100%;
+  margin: 0 auto 10px;
+}
+.welcome-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 30px 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  z-index: 1055;
+  text-align: center;
+  max-width: 90%;
+  width: 350px;
+}
+
+.welcome-popup .popup-content h4 {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.welcome-popup .close-btn {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.lottie-hello {
+  margin: 0 auto;
+}
