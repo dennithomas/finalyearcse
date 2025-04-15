@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import ErrorBoundary from "./components/ErrorBoundary";// ✅ Import ErrorBoundary
+import ErrorBoundary from "./components/ErrorBoundary";
+
 import OnboardingScreen from "./components/OnboardingScreen";
 import OnboardingScreen2 from "./components/OnboardingScreen2";
 import OnboardScreen3 from "./components/OnboardScreen3";
@@ -20,27 +21,70 @@ import HindiFinalQuiz from './components/HindiFinalQuiz';
 import Courses from "./components/Courses";
 
 const App = () => {
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showInstall, setShowInstall] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setShowInstall(true);
+    };
+
+    window.addEventListener("beforeinstallprompt", handler);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handler);
+    };
+  }, []);
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          console.log("User accepted the install prompt");
+        } else {
+          console.log("User dismissed the install prompt");
+        }
+        setDeferredPrompt(null);
+        setShowInstall(false);
+      });
+    }
+  };
+
   return (
-    <ErrorBoundary> {/* ✅ Wrap all routes in ErrorBoundary */}
-      <Routes>
-        <Route path="/" element={<OnboardingScreen />} />
-        <Route path="/onboarding2" element={<OnboardingScreen2 />} />
-        <Route path="/onboarding3" element={<OnboardScreen3 />} />
-        <Route path="/onboarding4" element={<OnboardScreen4 />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/chatbot" element={<Chatbot />} />
-        <Route path="/lesson/basics" element={<BasicsLanguageSelect />} />
-        <Route path="/lesson/Hindi-basics" element={<HindiBasicsLesson />} />
-        <Route path="/lesson/basics-2" element={<HindiBasicsLesson2 />} />
-        <Route path="/lesson/basics-3" element={<HindiBasicsLesson3 />} />
-        <Route path="/lesson/basics-4" element={<HindiBasicsLesson4 />} />
-        <Route path="/lesson/basics-5" element={<HindiBasicsLesson5 />} />
-        <Route path="/lesson/final-quiz" element={<HindiFinalQuiz />} />
-        <Route path="/courses" element={<Courses />} />
-      </Routes>
+    <ErrorBoundary>
+      <div>
+        {/* Optional Install button */}
+        {showInstall && (
+          <div style={{ position: "fixed", top: 10, right: 10 }}>
+            <button onClick={handleInstallClick} className="btn btn-primary">
+              Install Hindi App
+            </button>
+          </div>
+        )}
+
+        <Routes>
+          <Route path="/" element={<OnboardingScreen />} />
+          <Route path="/onboarding2" element={<OnboardingScreen2 />} />
+          <Route path="/onboarding3" element={<OnboardScreen3 />} />
+          <Route path="/onboarding4" element={<OnboardScreen4 />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/chatbot" element={<Chatbot />} />
+          <Route path="/lesson/basics" element={<BasicsLanguageSelect />} />
+          <Route path="/lesson/Hindi-basics" element={<HindiBasicsLesson />} />
+          <Route path="/lesson/basics-2" element={<HindiBasicsLesson2 />} />
+          <Route path="/lesson/basics-3" element={<HindiBasicsLesson3 />} />
+          <Route path="/lesson/basics-4" element={<HindiBasicsLesson4 />} />
+          <Route path="/lesson/basics-5" element={<HindiBasicsLesson5 />} />
+          <Route path="/lesson/final-quiz" element={<HindiFinalQuiz />} />
+          <Route path="/courses" element={<Courses />} />
+        </Routes>
+      </div>
     </ErrorBoundary>
   );
 };

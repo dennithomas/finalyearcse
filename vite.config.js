@@ -1,6 +1,7 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { VitePWA } from 'vite-plugin-pwa';
+// vite.config.js
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
   plugins: [
@@ -11,11 +12,11 @@ export default defineConfig({
       manifest: {
         name: 'Hindi Learning App',
         short_name: 'HindiApp',
-        description: 'A language learning app for Hindi and more',
+        description: 'A language learning app for Hindi',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '/',
+        start_url: '.',
         icons: [
           {
             src: 'icons/icon-192x192.png',
@@ -31,4 +32,4 @@ export default defineConfig({
       }
     })
   ]
-});
+})
