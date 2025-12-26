@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 export default defineConfig({
+  base: '/finalyearcse/',   // 🔴 REQUIRED for GitHub Pages
+
   plugins: [
     react(),
     VitePWA({
@@ -17,11 +19,11 @@ export default defineConfig({
       manifest: {
         name: 'Hindi Learning App',
         short_name: 'HindiApp',
-        description: 'A language learning app ',
+        description: 'A language learning app',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
-        start_url: '.',
+        start_url: '/finalyearcse/',   // 🔴 FIXED
         icons: [
           {
             src: 'icons/icon-192x192.png',
@@ -35,29 +37,23 @@ export default defineConfig({
           }
         ]
       },
-
-      // ← add this block:
       workbox: {
-        // bump default 2 MiB up to 5 MiB so your ~3.1 MB bundle is precached
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       }
     })
   ],
 
   build: {
-    // optional: split big libs into their own chunks
     rollupOptions: {
       output: {
         manualChunks: {
           'lottie-player': [
             '@lottiefiles/react-lottie-player',
             'lottie-web'
-          ],
-          // add other manual chunks here if needed
+          ]
         }
       }
     },
-    // optional: raise Vite’s own chunk‑size warning limit
-    chunkSizeWarningLimit: 3000, // KB
+    chunkSizeWarningLimit: 3000,
   }
 })
