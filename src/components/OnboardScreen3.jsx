@@ -5,19 +5,19 @@ import animationData from "../animation/translation.json"; // Assuming you have 
 
 const OnboardScreen3 = () => {
   const navigate = useNavigate();
-  const totalSteps = 4; // Total number of onboarding screens
-  const currentStep = 3; // This is the third screen
+  const totalSteps = 3; // ✅ 3 dots total
+  const currentStep = 2; // ✅ Second dot should be active
 
   return (
     <div
       className="d-flex flex-column justify-content-center align-items-center vh-100 text-center"
       style={{ backgroundColor: "#CEBAF9" }}
     >
-      {/* ✅ Lottie Animation instead of image */}
+      {/* ✅ Lottie Animation */}
       <Player
         autoplay
         loop
-        src={animationData} // Lottie animation file
+        src={animationData}
         style={{ width: "300px", height: "200px" }}
         className="mb-4"
       />
@@ -43,12 +43,12 @@ const OnboardScreen3 = () => {
         </button>
 
         {/* ✅ Pagination Dots */}
-        <div className="d-flex mt-3">
+        <div className="d-flex justify-content-center mt-3 w-100">
           {[...Array(totalSteps)].map((_, index) => (
             <span
               key={index}
               className={`mx-1 rounded-circle ${
-                index + 1 === currentStep ? "bg-dark" : "bg-secondary"
+                index === currentStep - 1 ? "bg-dark" : "bg-secondary"
               }`}
               style={{ width: "10px", height: "10px" }}
             ></span>

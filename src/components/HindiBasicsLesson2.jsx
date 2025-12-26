@@ -4,8 +4,11 @@ import { FaVolumeUp, FaCheckCircle, FaFire, FaStar } from "react-icons/fa";
 import { getAuth } from "firebase/auth";
 import { doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
 import { db } from "../firebaseConfig";
-import "./HindiBasicsLesson.css";
+import Lottie from 'lottie-react';  // Import Lottie component
+import celebrationAnimation from '../animation/celebration.json';  // Import Lottie JSON animation file
+import "./Spanishpage.css";
 
+// Vocabulary and Sentences data
 const vocabulary = [
   { hindi: "किताब", english: "Book", pronunciation: "kitaab" },
   { hindi: "कुर्सी", english: "Chair", pronunciation: "kursi" },
@@ -34,6 +37,7 @@ const HindiBasicsLesson2 = () => {
   const [selected, setSelected] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const [xpGained, setXpGained] = useState(false);
+  const [showCompletionPopup, setShowCompletionPopup] = useState(false);  // Popup state
 
   const handleAnswer = async (correct, index) => {
     setSelected(index);
@@ -56,6 +60,7 @@ const HindiBasicsLesson2 = () => {
             }),
           });
           setXpGained(true);
+          setShowCompletionPopup(true);  // Show the completion popup when XP is gained
         }
       } catch (error) {
         console.error("Error updating Firestore:", error);
@@ -106,22 +111,19 @@ const HindiBasicsLesson2 = () => {
         <div className="quiz-card">
           <p className="quiz-question">Q: What does "कुत्ता सड़क पर है।" mean?</p>
           <div className="quiz-options">
-            {[
-              { text: "A) The dog is on the road", isCorrect: true },
-              { text: "B) The book is on the chair", isCorrect: false },
-              { text: "C) The cat is under the table", isCorrect: false },
-            ].map((option, index) => (
+            {[{ text: "A) The dog is on the road", isCorrect: true },
+            { text: "B) The book is on the chair", isCorrect: false },
+            { text: "C) The cat is under the table", isCorrect: false }].map((option, index) => (
               <button
                 key={index}
-                className={`option-btn ${
-                  selected !== null
-                    ? option.isCorrect
-                      ? "correct"
-                      : index === selected
+                className={`option-btn ${selected !== null
+                  ? option.isCorrect
+                    ? "correct"
+                    : index === selected
                       ? "wrong"
                       : ""
-                    : ""
-                }`}
+                  : ""
+                  }`}
                 onClick={() => handleAnswer(option.isCorrect, index)}
                 disabled={selected !== null}
               >
@@ -160,6 +162,25 @@ const HindiBasicsLesson2 = () => {
           Next Lesson ➡
         </button>
       </div>
+
+      {/* Popup for Lesson Completion */}
+      {showCompletionPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <div className="lottie-container">
+              <Lottie
+                animationData={celebrationAnimation}
+                loop={false}
+                autoplay
+                style={{ height: "200px", width: "200px" }} // Adjust size as needed
+              />
+            </div>
+            <h2>🎉 Lesson Completed!</h2>
+            <p>You’ve earned 10 XP for this lesson.</p>
+            <button onClick={() => setShowCompletionPopup(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

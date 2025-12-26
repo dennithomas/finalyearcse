@@ -1,0 +1,109 @@
+/* Root styling for consistent theming */
+:root {
+    --primary: #3b82f6;
+    --bg: #f9fafb;
+    --card-bg: rgba(255, 255, 255, 0.6);
+    --card-blur: 10px;
+    --border: rgba(0, 0, 0, 0.1);
+    --font-main: 'Segoe UI', 'Latha', 'Noto Sans Tamil', sans-serif;
+    --shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    font-family: var(--font-main);
+    background: var(--bg);
+    margin: 0;
+    padding: 20px;
+    color: #1f2937;
+  }
+  
+  /* Title */
+  h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #111827;
+    font-weight: 700;
+  }
+  
+  /* Section Headings */
+  h2 {
+    font-size: 2rem;
+    margin-top: 50px;
+    border-left: 6px solid var(--primary);
+    padding-left: 12px;
+    color: #1e40af;
+  }
+  
+  /* Scrollable grid for large datasets */
+  .letter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+    max-height: 100%;
+    overflow-y: auto;
+    padding-bottom: 30px;
+  }
+  
+  /* Card design with glass effect */
+  .letter-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--card-blur));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .letter-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Tamil character */
+  .letter-card h3 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+    color: #be123c;
+    font-weight: 700;
+  }
+  
+  /* Pronunciation & meaning */
+  .letter-card p {
+    font-size: 1rem;
+    color: #374151;
+    margin: 3px 0;
+  }
+  
+  /* Sound button */
+  .letter-card button {
+    margin-top: 10px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 1.4rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+  }
+  
+  .letter-card button:hover {
+    background-color: #2563eb;
+    transform: scale(1.1);
+  }
+  
+  /* Optional: scroll bar style */
+  .letter-grid::-webkit-scrollbar {
+    width: 8px;
+  }
+  .letter-grid::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+  }
+  

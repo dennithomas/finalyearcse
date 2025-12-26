@@ -189,3 +189,132 @@ video {
         padding: 8px 12px;
     }
 }
+/* Full-Screen Chatbot Container */
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* <-- Soft gradient updated */
+    color: #1f2937;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Chat Messages Section */
+.chat-messages {
+    width: 100%;
+    max-width: 700px;
+    height: 80vh;
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Softer shadow */
+    scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hide Scrollbar */
+.chat-messages::-webkit-scrollbar {
+    display: none;
+}
+
+/* User Message (Light Blue Bubble) */
+.user-message {
+    align-self: flex-end;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    box-shadow: 0 0 12px rgba(79, 172, 254, 0.5);
+}
+
+/* Bot Message (Soft White Bubble) */
+.bot-message {
+    align-self: flex-start;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1f2937;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chat Input Box */
+.chat-input {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 12px;
+    margin-top: 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Input Field */
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: none;
+    color: #1f2937;
+}
+
+.chat-input input::placeholder {
+    color: rgba(31, 41, 55, 0.5);
+}
+
+/* Buttons (Send & Camera) */
+.chat-input button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #2563eb;
+    font-size: 22px;
+    padding: 8px 12px;
+    transition: transform 0.2s ease-in-out, opacity 0.3s;
+}
+
+.chat-input button:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+/* Camera & Close Buttons */
+.camera-button, .close-button {
+    background: #2563eb;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.camera-button:hover {
+    background: #1e40af;
+    transform: scale(1.05);
+}
+
+.close-button {
+    background: #ef4444;
+}
+
+.close-button:hover {
+    background: #b91c1c;
+    transform: scale(1.05);
+}
+/* User Message (Modern Green Gradient) */
+.user-message {
+    align-self: flex-end;
+    background: linear-gradient(to right, #16a085, #1abc9c); /* Updated to teal green gradient */
+    color: white;
+    box-shadow: 0 0 12px rgba(26, 188, 156, 0.5); /* Soft glow effect */
+}

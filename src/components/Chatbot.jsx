@@ -1,13 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import {
-  FaPaperPlane,
-  FaUpload,
-  FaMicrophone,
-} from "react-icons/fa";
+import { FaPaperPlane, FaUpload, FaMicrophone } from "react-icons/fa";
 import "./Chatbot.css";
 
-const API_KEY =  "AIzaSyBgpFffvh3aFdGu7RCCEjPtqlhfLhhsIpA"; // Replace with your actual API key
+const API_KEY = "AIzaSyBgpFffvh3aFdGu7RCCEjPtqlhfLhhsIpA" ;// Replace with your actual API key
 
 const Chatbot = () => {
   const [input, setInput] = useState("");
@@ -20,7 +16,18 @@ const Chatbot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // ✅ Detect language for speaking
+  useEffect(() => {
+    const hour = new Date().getHours();
+    let greeting = "Hello! How can I assist you today?";
+    if (hour < 12) greeting = "Good Morning! How can I assist you today?";
+    else if (hour < 18) greeting = "Good Afternoon! How can I assist you today?";
+    else greeting = "Good Evening! How can I assist you today?";
+
+    const botMessage = { sender: "bot", text: greeting };
+    setMessages([botMessage]);
+    speakMessage(greeting, "en-IN");
+  }, []);
+
   const detectLanguageCode = (text) => {
     const langSamples = {
       hi: ["है", "आप", "मैं", "क्या", "नमस्ते"],
@@ -29,78 +36,49 @@ const Chatbot = () => {
       kn: ["ನಾನು", "ನಮಸ್ಕಾರ", "ಇದು", "ನಿಮ್ಮ", "ಅವನು"],
       te: ["నేను", "నమస్కారం", "ఇది", "మీ", "అతను"],
     };
-
     for (const [lang, words] of Object.entries(langSamples)) {
       if (words.some((word) => text.includes(word))) {
-        return {
-          hi: "hi-IN",
-          ta: "ta-IN",
-          ml: "ml-IN",
-          kn: "kn-IN",
-          te: "te-IN",
-        }[lang];
+        return { hi: "hi-IN", ta: "ta-IN", ml: "ml-IN", kn: "kn-IN", te: "te-IN" }[lang];
       }
     }
-
-    return "en-IN"; // default to English
+    return "en-IN";
   };
 
-  // ✅ Speak in multiple languages
   const speakMessage = (text, langCode = "en-IN") => {
     const waitForVoices = () =>
       new Promise((resolve) => {
         const voices = speechSynthesis.getVoices();
-        if (voices.length) {
-          resolve(voices);
-        } else {
-          speechSynthesis.onvoiceschanged = () => {
-            resolve(speechSynthesis.getVoices());
-          };
-        }
+        if (voices.length) resolve(voices);
+        else speechSynthesis.onvoiceschanged = () => resolve(speechSynthesis.getVoices());
       });
 
     waitForVoices().then((voices) => {
       const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = langCode;
-
       const selectedVoice =
-        voices.find(
-          (v) =>
-            v.lang === langCode ||
-            v.lang.toLowerCase().startsWith(langCode.toLowerCase())
-        ) ||
+        voices.find((v) => v.lang === langCode || v.lang.toLowerCase().startsWith(langCode.toLowerCase())) ||
         voices.find((v) => v.lang.startsWith("en")) ||
         voices[0];
-
       utterance.voice = selectedVoice;
       speechSynthesis.cancel();
       setTimeout(() => speechSynthesis.speak(utterance), 200);
     });
   };
 
-  // ✅ Send message to Gemini API
   const sendMessage = async () => {
     if (!input.trim()) return;
-
     const userMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
 
     try {
       const response = await axios.post(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-        {
-          contents: [{ role: "user", parts: [{ text: input }] }],
-        },
+        { contents: [{ role: "user", parts: [{ text: input }] }] },
         { headers: { "Content-Type": "application/json" } }
       );
-
-      const aiText =
-        response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-        "Sorry, I couldn't process that.";
-
+      const aiText = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that.";
       const botMessage = { sender: "bot", text: aiText };
       setMessages((prev) => [...prev, botMessage]);
-
       const langCode = detectLanguageCode(aiText);
       speakMessage(aiText, langCode);
     } catch (error) {
@@ -113,13 +91,11 @@ const Chatbot = () => {
     setInput("");
   };
 
-  // ✅ Voice input
   const startListening = () => {
     if (!("webkitSpeechRecognition" in window)) {
       alert("Your browser does not support speech recognition.");
       return;
     }
-
     const recognition = new window.webkitSpeechRecognition();
     recognitionRef.current = recognition;
     recognition.lang = "en-IN";
@@ -134,76 +110,106 @@ const Chatbot = () => {
       try {
         const response = await axios.post(
           `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
-          {
-            contents: [{ role: "user", parts: [{ text: speechInput }] }],
-          },
+          { contents: [{ role: "user", parts: [{ text: speechInput }] }] },
           { headers: { "Content-Type": "application/json" } }
         );
-
-        const aiText =
-          response.data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-          "Sorry, I couldn't process that.";
+        const aiText = response.data?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that.";
         const botMessage = { sender: "bot", text: aiText };
         setMessages((prev) => [...prev, botMessage]);
-
         const langCode = detectLanguageCode(aiText);
         speakMessage(aiText, langCode);
       } catch (error) {
         console.error("Voice error:", error);
-        setMessages((prev) => [
-          ...prev,
-          { sender: "bot", text: "Voice assistant error." },
-        ]);
+        setMessages((prev) => [...prev, { sender: "bot", text: "Voice assistant error." }]);
         speakMessage("Voice assistant error", "en-IN");
       }
     };
-
     recognition.start();
   };
 
-  // ✅ Image Upload
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
     const reader = new FileReader();
-    reader.onload = () => identifyObject(reader.result);
+    reader.onload = () => identifyObjectOrText(reader.result);
     reader.readAsDataURL(file);
   };
 
-  const identifyObject = async (imageData) => {
+  const identifyObjectOrText = async (imageData) => {
     try {
       const base64Image = imageData.split(",")[1];
-      const response = await axios.post(
+
+      // ✅ Step 1: OCR Text Detection
+      const textResponse = await axios.post(
         `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`,
         {
           requests: [
             {
               image: { content: base64Image },
-              features: [{ type: "LABEL_DETECTION", maxResults: 3 }],
+              features: [{ type: "TEXT_DETECTION" }],
             },
           ],
         },
         { headers: { "Content-Type": "application/json" } }
       );
 
-      const labels =
-        response.data.responses?.[0]?.labelAnnotations?.map(
+      const detectedText = textResponse.data.responses?.[0]?.fullTextAnnotation?.text;
+
+      if (detectedText) {
+        const userLangCode = detectLanguageCode(input || ""); // Detect from user input
+        const translateLang = userLangCode.startsWith("en") ? "en" : userLangCode.split("-")[0];
+
+        // ✅ Step 2: Translate text using Gemini
+        const translationResponse = await axios.post(
+          `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`,
+          {
+            contents: [
+              {
+                role: "user",
+                parts: [{ text: `Translate this to ${translateLang}: ${detectedText}` }],
+              },
+            ],
+          },
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        const translatedText =
+          translationResponse.data?.candidates?.[0]?.content?.parts?.[0]?.text || "Could not translate text.";
+
+        const botMessage = { sender: "bot", text: translatedText };
+        setMessages((prev) => [...prev, botMessage]);
+        speakMessage(translatedText, userLangCode || "en-IN");
+      } else {
+        // ✅ Step 3: Normal Object Detection
+        const objectResponse = await axios.post(
+          `https://vision.googleapis.com/v1/images:annotate?key=${API_KEY}`,
+          {
+            requests: [
+              {
+                image: { content: base64Image },
+                features: [{ type: "LABEL_DETECTION", maxResults: 3 }],
+              },
+            ],
+          },
+          { headers: { "Content-Type": "application/json" } }
+        );
+
+        const labels = objectResponse.data.responses?.[0]?.labelAnnotations?.map(
           (label) => label.description
         ) || [];
-      const resultMsg = labels.length
-        ? `Identified objects: ${labels.join(", ")}`
-        : "No objects identified.";
 
-      setMessages((prev) => [...prev, { sender: "bot", text: resultMsg }]);
-      speakMessage(resultMsg, "en-IN");
+        const resultMsg = labels.length
+          ? `Identified objects: ${labels.join(", ")}`
+          : "No objects identified.";
+
+        setMessages((prev) => [...prev, { sender: "bot", text: resultMsg }]);
+        speakMessage(resultMsg, "en-IN");
+      }
     } catch (error) {
-      console.error("Object detection error:", error);
-      setMessages((prev) => [
-        ...prev,
-        { sender: "bot", text: "Failed to identify objects." },
-      ]);
-      speakMessage("Failed to identify objects.", "en-IN");
+      console.error("Image processing error:", error);
+      setMessages((prev) => [...prev, { sender: "bot", text: "Failed to process image." }]);
+      speakMessage("Failed to process image.", "en-IN");
     }
   };
 
@@ -218,16 +224,12 @@ const Chatbot = () => {
     <div className="chatbot-container">
       <div className="chat-messages">
         {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={msg.sender === "user" ? "user-message" : "bot-message"}
-          >
+          <div key={i} className={msg.sender === "user" ? "user-message" : "bot-message"}>
             {msg.text}
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
-
       <div className="chat-input">
         <input
           type="text"
@@ -241,15 +243,6 @@ const Chatbot = () => {
         </button>
         <button onClick={startListening}>
           <FaMicrophone />
-        </button>
-        <input
-          type="file"
-          ref={fileInputRef}
-          onChange={handleImageUpload}
-          style={{ display: "none" }}
-        />
-        <button onClick={() => fileInputRef.current.click()}>
-          <FaUpload />
         </button>
       </div>
     </div>

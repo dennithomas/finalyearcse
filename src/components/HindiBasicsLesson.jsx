@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { doc, updateDoc, increment, arrayUnion } from "firebase/firestore";
-import { db,auth } from "../firebaseConfig";
+import { db, auth } from "../firebaseConfig";
 import { FaVolumeUp, FaCheckCircle, FaFire, FaStar } from "react-icons/fa";
-import "./HindiBasicsLesson.css";
+import Lottie from "lottie-react"; // ✅ Correct import for Lottie
+import celebrationAnimation from "../animation/celebration.json"; // ✅ Add your Lottie JSON here
+import "./Spanishpage.css";
 
 const vocabulary = [
   { hindi: "लड़का", english: "Boy", pronunciation: "ladkaa" },
@@ -42,7 +44,8 @@ const HindiBasicsLesson = () => {
   const navigate = useNavigate();
   const [selected, setSelected] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
-  const [xpGained, setXpGained] = useState(false); // To avoid double XP/score update
+  const [xpGained, setXpGained] = useState(false);
+  const [showCompletionPopup, setShowCompletionPopup] = useState(false);
 
   const handleAnswer = async (correct, index) => {
     setSelected(index);
@@ -68,6 +71,7 @@ const HindiBasicsLesson = () => {
           });
 
           setXpGained(true);
+          if (correct) setShowCompletionPopup(true);
         }
       } catch (error) {
         console.error("Error updating XP/quiz score:", error);
@@ -83,7 +87,6 @@ const HindiBasicsLesson = () => {
     <div className="hindi-lesson-container">
       <h1 className="lesson-title">Basics: Hindi (बुनियादी)</h1>
 
-      {/* About Hindi */}
       <section className="section about-hindi">
         <h2 className="section-title">📝 About Hindi</h2>
         <p>
@@ -91,7 +94,6 @@ const HindiBasicsLesson = () => {
         </p>
       </section>
 
-      {/* Vocabulary */}
       <section className="section">
         <h2 className="section-title">🧠 Vocabulary</h2>
         <div className="vocab-grid">
@@ -107,7 +109,6 @@ const HindiBasicsLesson = () => {
         </div>
       </section>
 
-      {/* Sentences */}
       <section className="section">
         <h2 className="section-title">📘 Example Sentences</h2>
         <div className="sentence-list">
@@ -124,13 +125,12 @@ const HindiBasicsLesson = () => {
         </div>
       </section>
 
-      {/* Quiz */}
       <section className="section">
         <h2 className="section-title">✅ Quick Quiz</h2>
         <div className="quiz-card">
           <p className="quiz-question">Q: What does "यह पानी है।" mean?</p>
           <div className="quiz-options">
-            {[
+            {[ 
               { text: "A) This is a man", isCorrect: false },
               { text: "B) This is water", isCorrect: true },
               { text: "C) This is a girl", isCorrect: false },
@@ -165,7 +165,6 @@ const HindiBasicsLesson = () => {
         </div>
       </section>
 
-      {/* XP and Streak */}
       <div className="xp-streak">
         <div className="streak">
           <FaFire className="icon" /> 4-day Streak
@@ -175,11 +174,27 @@ const HindiBasicsLesson = () => {
         </div>
       </div>
 
-      {/* Navigation */}
       <div className="navigation-buttons">
         <button className="nav-btn" onClick={handleBack}>⬅ Back</button>
         <button onClick={() => navigate("/lesson/basics-2")}>Next Lesson ➡</button>
       </div>
+
+      {/* 🎉 Completion Popup with Lottie */}
+      {showCompletionPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <Lottie
+              animationData={celebrationAnimation}
+              loop={false}
+              autoplay
+              style={{ height: "200px", width: "200px" }}
+            />
+            <h2>🎉 Lesson Completed!</h2>
+            <p>You’ve earned 10 XP for this lesson.</p>
+            <button onClick={() => setShowCompletionPopup(false)}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

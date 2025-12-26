@@ -1,144 +1,74 @@
+/* Container */
 .basics-container {
-    padding: 2rem;
-    background-color: #fffdf7;
-    min-height: 100vh;
-    font-family: "Segoe UI", sans-serif;
-  }
-  
-  .basics-container h2 {
-    font-size: 26px;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-  
-  .language-grid {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  
-  .language-card {
-    background-color: #f9f9f9;
-    padding: 1.5rem;
-    border-radius: 16px;
-    border: 1px solid #ddd;
-    width: 220px;
-    cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .language-card:hover {
-    background-color: #e9f4ff;
-    transform: translateY(-4px);
-  }
-  
-  .language-card h3 {
-    margin: 0;
-    font-size: 20px;
-  }
-  
-  .language-card p {
-    color: #666;
-    margin-top: 0.5rem;
-  }
-  .basics-container {
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  .language-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  
-  .language-card {
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    padding: 1.2rem;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .language-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .back-button {
-    margin-top: 2rem;
-    padding: 0.8rem 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  .basics-container {
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-  
-  .language-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    overflow-y: auto;
-    max-height: 600px; /* Adjust this height as per your design */
-    padding-right: 10px; /* For scrollbar space */
-  }
-  
-  .language-card {
-    background-color: #f5f5f5;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-  }
-  
-  .language-card:hover {
-    transform: scale(1.05);
-  }
-  
-  .language-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .language-card p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  .back-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .back-button:hover {
-    background-color: #0056b3;
-  }
-  
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Heading */
+.basics-container h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #212529;
+}
+
+/* Grid Layout */
+.language-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+/* Card */
+.language-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.language-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 20px rgba(0, 123, 255, 0.15);
+  background-color: #f0f8ff;
+}
+
+.language-card h3 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #343a40;
+  margin-bottom: 0.5rem;
+}
+
+.language-card p {
+  font-size: 0.95rem;
+  color: #6c757d;
+}
+
+/* Back Button (Dark Blue) */
+.back-button {
+  margin-top: 2.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #001f3d; /* Dark Blue */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 31, 61, 0.3);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #001a33; /* Darker shade of blue */
+  transform: translateY(-2px);
+}

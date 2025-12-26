@@ -1,0 +1,59 @@
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8f9fc, #e9edf3);
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.grid-item {
+  display: flex; /* Add this */
+  align-items: center; /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  flex-direction: column; /* Stack children vertically */
+  
+  text-align: center;
+  background: rgb(229, 226, 234);
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  border: 1px solid #e3e9f0;
+}
+
+.grid-item h4 {
+  margin: 0; /* Remove default margin */
+}
+
+
+.grid-item:hover {
+  transform: translateY(-6px) scale(1.02);
+  background: linear-gradient(135deg, #2c3e50, #4ca1af);
+  color: #ffffff;
+}
+
+.grid-icon {
+  font-size: 30px;
+  color: #1f2d3d;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.grid-item:hover .grid-icon {
+  color: #ffffff;
+}
+
+.grid-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #3b3f5c;
+  transition: color 0.3s ease;
+}
+
+.grid-item:hover .grid-label {
+  color: #ffffff;
+}

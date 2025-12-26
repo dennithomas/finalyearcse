@@ -1,13 +1,25 @@
 // src/components/Courses.jsx
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import "./Dashboard.css"; // Reuse same styles
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./Dashboard.css";
 
 const lessons = [
-  { title: "Basics", description: "Choose a language to start basics", route: "/lesson/basics" },
-  { title: "Phrases", description: "Learn useful phrases", route: "/lesson/phrases" },
-  { title: "Grammar", description: "Understand grammar rules", route: "/lesson/grammar" },
+  {
+    title: "Basics",
+    description: "Choose a language to start basics",
+    route: "/lesson/basics",
+  },
+  {
+    title: "Phrases",
+    description: "Choose a language for phrases",
+    route: "/lesson/phrases-language-select",
+  },
+  {
+    title: "Grammar",
+    description: "Choose a language for grammar",
+    route: "/lesson/grammar-language-select",
+  },
 ];
 
 const Courses = () => {

@@ -1,0 +1,424 @@
+body {
+  background: #f5f7fa; /* Soft light background */
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.english-lesson-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.lesson-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  text-align: center;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #34495e;
+}
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.vocab-card {
+  background: #ecf0f3;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: inset 2px 2px 6px #d1d9e6, inset -2px -2px 6px #ffffff;
+}
+
+.play-button {
+  margin-top: 0.5rem;
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.play-button:hover {
+  background: #5852d6;
+}
+
+.quiz-card {
+  margin-top: 1rem;
+}
+
+.quiz-question {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.option-btn {
+  background: linear-gradient(145deg, #e3e8f0, #cfd6e0);
+  color: #333;
+  border: 1px solid #b6bec8;
+  border-radius: 12px;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1),
+              -2px -2px 5px rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.option-btn:hover {
+  background: linear-gradient(145deg, #cbd3dd, #b8c0cb);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.15),
+              -3px -3px 6px rgba(255, 255, 255, 0.6);
+}
+
+.option-btn.correct {
+  background: #4caf50 !important;
+  color: #fff;
+  border-color: #4caf50;
+  box-shadow: none;
+}
+
+.option-btn.wrong {
+  background: #f44336 !important;
+  color: #fff;
+  border-color: #f44336;
+  box-shadow: none;
+}
+
+.correct-icon {
+  margin-left: 0.5rem;
+}
+
+.feedback-text {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.xp-streak {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-top: 2rem;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.streak, .xp {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.icon {
+  color: #ff7e67;
+}
+
+.xp .icon {
+  color: #ffd700;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.nav-btn {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #5852d6;
+}
+
+.navigation-buttons button:last-child {
+  background: #2ecc71;
+}
+
+.navigation-buttons button:last-child:hover {
+  background: #27ae60;
+}
+body {
+  background: #f5f7fa; /* Soft light background */
+  font-family: 'Poppins', sans-serif;
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+}
+
+.german-lesson-container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.lesson-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #34495e;
+}
+
+.section {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.sentence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sentence-card {
+  background: #ecf0f3;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: inset 2px 2px 6px #d1d9e6, inset -2px -2px 6px #ffffff;
+}
+
+.text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #8fa1af;
+}
+
+.explanation {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+.pronunciation {
+  font-size: 0.95rem;
+  color: #95a5a6;
+}
+
+.play-button {
+  margin-top: 0.7rem;
+  background: linear-gradient(145deg, #1a2c97, #8794a398);
+  color: #2c3e50;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1), -2px -2px 5px rgba(255,255,255,0.6);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-button:hover {
+  background: linear-gradient(145deg, #c5ccd6, #b0b8c2);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.15), -3px -3px 8px rgba(255,255,255,0.6);
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.nav-btn {
+  background: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #4b42c6;
+}
+
+.navigation-buttons button:last-child {
+  background: #2ecc71;
+}
+
+.navigation-buttons button:last-child:hover {
+  background: #27ae60;
+}
+
+/* Container */
+.french-lesson-container {
+  padding: 2rem;
+  background: #f5f7fb; /* Soft light background */
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Title */
+.lesson-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #2e2e2e;
+}
+
+/* Section Title */
+.section-title {
+  font-size: 1.5rem;
+  color: #3b3b3b;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Sentence List Grid */
+.sentence-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Sentence Card */
+.sentence-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.sentence-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Text Styles */
+.french-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #2c2c2c;
+}
+
+.explanation, .pronunciation {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+/* Play Button */
+.play-button {
+  margin-top: 0.8rem;
+  background: linear-gradient(135deg, #ff6b6b, #d84343); /* French Red Gradient */
+  color: white; /* White text */
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1), -2px -2px 5px rgba(255,255,255,0.5);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-button:hover {
+  background: linear-gradient(135deg, #d84343, #b73232);
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.15), -3px -3px 8px rgba(255,255,255,0.5);
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.nav-btn {
+  background: linear-gradient(135deg, #4e54c8, #5652bf); /* Soft Blue Gradient */
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: linear-gradient(135deg, #3b40a4, #41419c);
+  transform: translateY(-2px);
+}
+.play-button {
+  margin-top: 0.7rem;
+  background: linear-gradient(145deg, #6c63ff, #5147d3); /* Slight purple gradient */
+  color: white; /* White text color */
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.1), -2px -2px 5px rgba(255,255,255,0.6);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.play-button:hover {
+  background: linear-gradient(145deg, #5147d3, #3c34b2); /* Darker on hover */
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 8px rgba(0,0,0,0.15), -3px -3px 8px rgba(255,255,255,0.6);
+}

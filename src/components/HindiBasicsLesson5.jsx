@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FaVolumeUp, FaCheckCircle, FaFire, FaStar } from "react-icons/fa";
 import { db, auth } from "../firebaseConfig";
 import { doc, updateDoc, getDoc, increment, arrayUnion } from "firebase/firestore";
-import "./HindiBasicsLesson.css";
+import "./Spanishpage.css";
 
 // Vocabulary
 const vocabulary = [

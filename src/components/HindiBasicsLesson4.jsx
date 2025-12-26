@@ -3,7 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { FaVolumeUp, FaCheckCircle, FaFire, FaStar } from "react-icons/fa";
 import { db, auth } from "../firebaseConfig";
 import { doc, updateDoc, getDoc, increment, arrayUnion } from "firebase/firestore";
-import "./HindiBasicsLesson.css";
+import Lottie from "lottie-react";
+import celebrationAnimation from "../animation/celebration.json"; // make sure you have this or update path
+import "./Spanishpage.css";
 
 // Vocabulary
 const vocabulary = [
@@ -56,6 +58,7 @@ const HindiBasicsLesson4 = () => {
   const [selected, setSelected] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const [xp, setXp] = useState(0);
   const [streak, setStreak] = useState(0);
 
@@ -91,14 +94,32 @@ const HindiBasicsLesson4 = () => {
         quizScores: arrayUnion({ lessonId: "basics-4", score: 1 }),
         completedLessons: arrayUnion("basics-4"),
       });
+
       setXp((prev) => prev + 20);
       setQuizCompleted(true);
+      setShowPopup(true);
+
+      // Hide popup after 4 seconds
+      setTimeout(() => {
+        setShowPopup(false);
+      }, 4000);
     }
   };
 
   return (
     <div className="hindi-lesson-container">
       <h1 className="lesson-title">Basics 4: Hindi (क्रियाएँ - Verbs)</h1>
+
+      {/* Popup */}
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup">
+            <Lottie animationData={celebrationAnimation} loop={false} className="popup-animation" />
+            <h2>🎉 Lesson Completed!</h2>
+            <p>You've earned +20 XP</p>
+          </div>
+        </div>
+      )}
 
       {/* Grammar Tip */}
       <section className="section grammar-tip">
@@ -152,8 +173,7 @@ const HindiBasicsLesson4 = () => {
         <div className="quiz-card">
           <p className="quiz-question">Q: What does "मैं पढ़ रहा हूँ।" mean?</p>
           <div className="quiz-options">
-            {[
-              { text: "A) I am running", isCorrect: false },
+            {[{ text: "A) I am running", isCorrect: false },
               { text: "B) I am reading", isCorrect: true },
               { text: "C) I am walking", isCorrect: false },
             ].map((option, index) => (

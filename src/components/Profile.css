@@ -1,0 +1,100 @@
+/* Profile.css - Bootstrap-based styling */
+
+.profile-page {
+  max-width: 480px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.profile-page h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #343a40;
+}
+
+.profile-page .card {
+  background: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid #0d6efd;
+}
+
+.profile-page p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  color: #495057;
+}
+
+.profile-page .btn-danger {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  font-weight: 500;
+}
+/* Profile.css */
+
+.profile-photo {
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #0d6efd;
+}
+.profile-photo {
+  object-fit: cover;
+  border: 2px solid #ccc;
+}
+
+/* Button Common Style */
+.profile-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  gap: 8px;
+}
+
+/* Back Button */
+.back-button {
+  background-color: #f3f4f6; /* light gray */
+  color: #374151; /* dark gray text */
+  border: 1px solid #d1d5db;
+}
+
+.back-button:hover {
+  background-color: #e5e7eb; /* slightly darker on hover */
+}
+
+/* Logout Button */
+.logout-button {
+  background-color: #ef4444; /* red */
+  color: #fff;
+  border: none;
+}
+
+.logout-button:hover {
+  background-color: #dc2626; /* darker red on hover */
+}
+
+/* Button Row */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
